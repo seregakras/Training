@@ -8,7 +8,88 @@
 #include <cmath>
 using namespace std;
 
-int SumArr(int Arr[], int length)
+// Функция заполнения массива случайными числами 
+template <typename T>
+void InitMassiv(T arr[], int size, int start = 0, int finish = 100, double kratnost = 1) {
+    for (int i = 0; i < size; i++)
+    {
+        arr[i] = (rand() % (finish + 1 - start) + start) / kratnost;
+    }
+}
+
+// Функция вывода массива на экран
+template <typename T>
+void ShowMassiv(T arr[], int size) {
+    for (int i = 0; i < size; i++)
+    {
+        cout << "  " << arr[i];
+    }
+    cout << endl;
+}
+
+// Функция пузырьковой сортировки массива
+template <typename T>
+void SortMassiv(T arr[], int size) {
+    for (int i = 0; i < size - 1; i++)
+    {
+        T temp;
+        for (int j = 0; j < size - 1; j++)
+        {
+            if (arr[j] > arr[j + 1])
+            {
+                temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+
+
+    }
+}
+
+// Функция поиска максимального элемента массива
+template <typename T>
+T MaxElem(T arr[], int size) {
+    T max = arr[0];
+    for (int i = 0; i < size; i++)
+    {
+        if (arr[i] > max)
+        {
+            max = arr[i];
+        }
+    }
+    return max;
+}
+
+// Функция заполнения матрицы случайными числами 
+template <typename T>
+void InitMatrica(T arr[][5], int row, int col, int start = 0, int finish = 100, T mnogitel = 1) {
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+        {
+            arr[i][j] = (rand() % (finish + 1 - start) + start) * mnogitel;
+        }
+    }
+}
+
+// Функция вывода матрицы на экран
+template <typename T>
+void ShowMatrica(T arr[][5], int row, int col) {
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+        {
+            cout << setw(6) << arr[i][j];
+        }
+        cout << endl;
+    }
+    cout << endl;
+}
+
+// Функция вычисления суммы элементов массива рекурсивно
+template <typename T>
+T SumArr(T Arr[], int length)
 {
     if (length == 0)
     {
@@ -22,8 +103,13 @@ int SumArr(int Arr[], int length)
 
 int main()
 {
-    int Ar[6] = { 0, 5, 3, 9, 2, -3 };
-    cout << SumArr(Ar, 6);
+    setlocale(LC_ALL, "Russian");
+    srand(time(NULL));
+
+    double Ar[10];
+    InitMassiv(Ar, 10, 0, 10, 10.0);
+    ShowMassiv(Ar, 10);
+    cout << SumArr(Ar, 10);
 
 
 
